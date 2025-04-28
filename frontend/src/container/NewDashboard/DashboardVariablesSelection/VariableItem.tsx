@@ -135,18 +135,21 @@ function VariableItem({
 							variableData.name &&
 							(validVariableUpdate() || valueNotInList || variableData.allSelected)
 						) {
-							let value = variableData.selectedValue;
+							const value = variableData.selectedValue;
 							let allSelected = false;
 							// The default value for multi-select is ALL and first value for
 							// single select
-							if (valueNotInList) {
-								if (variableData.multiSelect) {
-									value = newOptionsData;
-									allSelected = true;
-								} else {
-									[value] = newOptionsData;
-								}
-							} else if (variableData.multiSelect) {
+							// console.log(valueNotInList);
+							// if (valueNotInList) {
+							// 	if (variableData.multiSelect) {
+							// 		value = newOptionsData;
+							// 		allSelected = true;
+							// 	} else {
+							// 		[value] = newOptionsData;
+							// 	}
+							// } else
+
+							if (variableData.multiSelect) {
 								const { selectedValue } = variableData;
 								allSelected =
 									newOptionsData.length > 0 &&
@@ -299,8 +302,6 @@ function VariableItem({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [variableData.type, variableData.customValue]);
 
-	console.log(tempSelection, selectedValueStringified, variableData.allSelected);
-
 	return (
 		<div className="variable-item">
 			<Typography.Text className="variable-name" ellipsis>
@@ -322,7 +323,6 @@ function VariableItem({
 						}}
 					/>
 				) : (
-					!errorMessage &&
 					optionsData &&
 					(variableData.multiSelect ? (
 						<CustomMultiSelect
@@ -351,6 +351,7 @@ function VariableItem({
 							allowClear
 							value={tempSelection || selectValue}
 							onDropdownVisibleChange={handleDropdownVisibleChange}
+							errorMessage={errorMessage}
 						/>
 					) : (
 						<CustomSelect
@@ -375,6 +376,7 @@ function VariableItem({
 								value: option.toString(),
 							}))}
 							value={selectValue}
+							errorMessage={errorMessage}
 						/>
 					))
 				)}
