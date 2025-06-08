@@ -57,6 +57,7 @@ var (
 		"memory": {"C", "D", "F2"},
 		"wait":   {"E", "F", "F3"},
 		"load15": {"G"},
+		"disk":   {"H"},
 	}
 
 	// TODO(srikanthccv): remove hardcoded metric name and support keys from any system metric
@@ -71,7 +72,7 @@ var (
 		"memory": GetDotMetrics("system_memory_usage"),
 		"load15": GetDotMetrics("system_cpu_load_average_15m"),
 		"wait":   GetDotMetrics("system_cpu_time"),
-		"disk":   GetDotMetrics("system_disk_usage"),
+		"disk":   GetDotMetrics("system_filesystem_usage"),
 	}
 )
 

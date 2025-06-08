@@ -1682,7 +1682,7 @@ export const getHostQueryPayload = (
 		: 'system_disk_pending_operations';
 	const diskUsageKey = dotMetricsEnabled
 		? 'system.filesystem.usage'
-		: 'system_disk_usage';
+		: 'system_filesystem_usage';
 	return [
 		{
 			selectedTime: 'GLOBAL_TIME',
@@ -1885,7 +1885,7 @@ export const getHostQueryPayload = (
 						{
 							aggregateAttribute: {
 								dataType: DataTypes.Float64,
-								id: 'system_disk_usage--float64--Gauge--true',
+								id: 'system_filesystem_usage--float64--Gauge--true',
 								isColumn: true,
 								isJSON: false,
 								key: diskUsageKey,
@@ -2536,7 +2536,7 @@ export const getHostQueryPayload = (
 							functions: [],
 							groupBy: [],
 							having: [],
-							legend: '',
+							legend: 'system disk io',
 							limit: null,
 							orderBy: [],
 							queryName: 'A',
