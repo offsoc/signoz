@@ -334,6 +334,15 @@ var HostsTableListQuery = v3.QueryRangeParamsV3{
 							Operator: v3.FilterOperatorNotContains,
 							Value:    agentNameToIgnore,
 						},
+						{
+							Key: v3.AttributeKey{
+								Key:      "mountpoint",
+								DataType: v3.AttributeKeyDataTypeString,
+								Type:     v3.AttributeKeyTypeTag,
+							},
+							Operator: v3.FilterOperatorEqual,
+							Value:    "/",
+						},
 					},
 				},
 				GroupBy: []v3.AttributeKey{
@@ -362,12 +371,30 @@ var HostsTableListQuery = v3.QueryRangeParamsV3{
 					Items: []v3.FilterItem{
 						{
 							Key: v3.AttributeKey{
+								Key:      "state",
+								DataType: v3.AttributeKeyDataTypeString,
+								Type:     v3.AttributeKeyTypeTag,
+							},
+							Operator: v3.FilterOperatorEqual,
+							Value:    "free",
+						},
+						{
+							Key: v3.AttributeKey{
 								Key:      hostNameAttrKey,
 								DataType: v3.AttributeKeyDataTypeString,
 								Type:     v3.AttributeKeyTypeResource,
 							},
 							Operator: v3.FilterOperatorNotContains,
 							Value:    agentNameToIgnore,
+						},
+						{
+							Key: v3.AttributeKey{
+								Key:      "mountpoint",
+								DataType: v3.AttributeKeyDataTypeString,
+								Type:     v3.AttributeKeyTypeTag,
+							},
+							Operator: v3.FilterOperatorEqual,
+							Value:    "/",
 						},
 					},
 				},
@@ -386,7 +413,7 @@ var HostsTableListQuery = v3.QueryRangeParamsV3{
 			},
 			"F4": {
 				QueryName:  "F4",
-				Expression: "H/I",
+				Expression: "H/(H+I)",
 				Legend:     "Disk Usage (%)",
 				Filters: &v3.FilterSet{
 					Operator: "AND",
